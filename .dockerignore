@@ -1,0 +1,7 @@
+# Client
+client/node_modules
+client/docker
+
+# Server
+server/node_modules
+server/docker

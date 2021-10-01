@@ -1,0 +1,37 @@
+version: "3.8"
+
+networks:
+    odessey-network:
+  
+volumes:
+    odessey-volume:
+
+services:
+
+    odessey-client:
+        stdin_open: true
+        container_name: odessey-client
+        build:
+            context: .
+            dockerfile: ./client/docker/node/Dockerfile
+        ports:
+            - "3000:3000"
+        volumes:
+            - "./client/node_modules"
+            - "./client/:/app"
+        networks:
+            - odessey-network
+
+    odessey-server:
+        stdin_open: true
+        container_name: odessey-server
+        build:
+            context: .
+            dockerfile: ./server/docker/node/Dockerfile
+        ports:
+            - "4000:4000"
+        volumes:
+            - "./server/node_modules"
+            - "./server/:/app"
+        networks:
+            - odessey-network
